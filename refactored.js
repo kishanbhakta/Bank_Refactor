@@ -1,11 +1,11 @@
 // Find the button elements and store them in checking and retirement variables.
-var checkingDepositBtn = document.querySelectorAll("#deposit1");
+var checkingDepositBtn = document.querySelector("#deposit1");
 console.log(checkingDepositBtn);
-var checkingWithdrawBtn = document.querySelectorAll("#withdraw1");
+var checkingWithdrawBtn = document.querySelector("#withdraw1");
 console.log(checkingWithdrawBtn);
-var retirementDepositBtn = document.querySelectorAll("#deposit2");
+var retirementDepositBtn = document.querySelector("#deposit2");
 console.log(retirementDepositBtn);
-var retirementWithdrawBtn = document.querySelectorAll("#withdraw2");
+var retirementWithdrawBtn = document.querySelector("#withdraw2");
 console.log(retirementWithdrawBtn);
 
 
