@@ -8,68 +8,136 @@ console.log(retirementDepositBtn);
 var retirementWithdrawBtn = document.querySelector("#withdraw2");
 console.log(retirementWithdrawBtn);
 
-
+// Set up Empty Arrays for Checking account and Retirement accounts
 var checkingBalance = [];
+var retirementBalance = [];
+
+// Set balances for both accounts initially to 0
 var balance1 = 0;
 var balance2 = 0;
+updateDisplay();
 
 //Create a function for Checking Account and munipulate balance total from amount deposited
-var checkingAcct = function() {
+var depositCheckingAcct = function() {
     var amount = document.getElementById("amount1").value;
     amount = parseInt(amount);
-
-    //Develope if...else statements to add amount value when deposited or substract amount value when withdrawing
-    function depositCheckingAcct() {
-        balance1 = amount + balance1;
-        checkingBalance.push("balance1");
-    console.log(balance1);
-    }
-    console.log(checkingBalance);
-    function withdrawCheckingAcct() {
-      if(amount <= balance1) {
-        balance1 = balance1 - amount;
-        checkingBalance.push(balance1);
-    console.log(balance1);
-      }
-    console.log(checkingBalance);
-    }
-    updateDisplay();
-};
-checkingDepositBtn.addEventListener('click', checkingAcct);
-checkingWithdrawBtn.addEventListener('click', checkingAcct);
-
-//Create a function for Retirement Account and munipulate balance total from amount deposited
-var retirementAcct = function() {
-    var amount = document.getElementById("amount2").value;
-    amount = parseInt(amount);
-
-    //Develope if...else statements to add amount value plus complimentary $10 from the bank when deposited or substract amount value when withdrawing
-    function depositRetirementAcct() {
-        if (amount >= balance2) {
-            balance2 = amount + balance2 + 10;
-        } else(amount <= balance2)
-        balance2 = balance2 - amount;
-    }
-    updateDisplay();
-};
-retirementDepositBtn.addEventListener('click', retirementAcct);
-retirementWithdrawBtn.addEventListener('click', retirementAcct);
-
-function updateDisplay(balance) {
-    if (balance1 <= 0)
-        document.getElementById("balance1").className = "zero";
-    else
-        document.getElementById("balance1").className = "";
-
-    if (balance2 <= 0)
-        document.getElementById("balance2").className ="zero";
-    else
-        document.getElementById("balance2").className = "";
+    // Push value captured from input to checkingBalance Array
+    checkingBalance.push(amount);
+    // Add initial previous amount (a) with current amount (b)
+    var sum = checkingBalance.reduce(function(a, b) {
+        return a + b;
+    }, 0);
 
     var bal1Element = document.getElementById("balance1");
-        bal1Element.innerHTML = "$" + checkingBalance;
+    bal1Element.innerHTML = "$" + sum;
+
+    // Clear out array
+    checkingBalance = [];
+
+    // Push new amount up
+    checkingBalance.push(sum);
+
+    console.log(checkingBalance);
+    // run updateDisplay function to update DOM
+    updateDisplay();
+};
+checkingDepositBtn.addEventListener('click', depositCheckingAcct);
+
+
+
+//Create a function for Checking Account and munipulate balance total from amount withdrawn
+function withdrawCheckingAcct(amount1) {
+    var amount1 = document.getElementById("amount1").value;
+    amount1 = parseInt(amount1);
+    // Push value captured from input to checkingBalance Array
+    checkingBalance.push(amount1);
+    // Subtract previous amount(a) from current amount(b)
+    var sum = checkingBalance.reduce(function(a, b) {
+        return a - b;
+    });
+
+    var bal1Element = document.getElementById("balance1");
+    bal1Element.innerHTML = "$" + sum;
+
+    // Clear out array
+    checkingBalance = [];
+
+    // Push new amount up
+    checkingBalance.push(sum);
+
+    // run updateDisplay function to update DOM
+    updateDisplay();
+};
+checkingWithdrawBtn.addEventListener('click', withdrawCheckingAcct);
+
+
+
+//Create a function for Retirement Account and munipulate balance total from amount deposited
+var depositRetirementAcct = function() {
+    var amount = document.getElementById("amount2").value;
+    amount = parseInt(amount);
+    // Push value captured from input to retirementBalance Array
+    retirementBalance.push(amount + 10);
+    // Add initial previous amount (a) with current amount (b)
+    var sum = retirementBalance.reduce(function(a, b) {
+        return a + b;
+    }, 0);
+
     var bal2Element = document.getElementById("balance2");
-        bal2Element.innerHTML = "$" + balance2;
-    var amnt1Element = document.getElementById('amount1').value;
-    var amnt2Element = document.getElementById('amount2').value;
+    bal2Element.innerHTML = "$" + sum;
+
+    // Clear out array
+    retirementBalance = [];
+
+    // Push new amount up
+    retirementBalance.push(sum);
+
+    // run updateDisplay function to update DOM
+    updateDisplay();
+};
+retirementDepositBtn.addEventListener('click', depositRetirementAcct);
+
+
+
+//Create a function for Retirement Account and munipulate balance total from amount withdrawn
+function withdrawRetirementAcct(amount2) {
+    var amount2 = document.getElementById("amount2").value;
+    amount2 = parseInt(amount2);
+    // Push value captured from input to retirementBalance Array
+    retirementBalance.push(amount2);
+    // Subtract previous amount(a) from current amount(b)
+    var sum = retirementBalance.reduce(function(a, b) {
+        return a - b;
+    });
+
+    var bal2Element = document.getElementById("balance2");
+    bal2Element.innerHTML = "$" + sum;
+
+    // Clear out array
+    retirementBalance = [];
+
+    // Push new amount up
+    retirementBalance.push(sum);
+
+    // run updateDisplay function to update DOM
+    updateDisplay();
+};
+retirementWithdrawBtn.addEventListener('click', withdrawRetirementAcct);
+
+
+// Update Account Elements
+function updateDisplay(balance) {
+    if (checkingBalance <= 0)
+        document.getElementById("balance1").className = "zero";
+    else
+        document.getElementById("balance1").className = "balance";
+
+    if (retirementBalance <= 0)
+        document.getElementById("balance2").className = "zero";
+    else
+        document.getElementById("balance2").className = "balance";
+
+    // Clear out input fields after each deposit of withdraw
+    var amnt1Element = document.getElementById('amount1').value = "";
+    var amnt2Element = document.getElementById('amount2').value = "";
 };
