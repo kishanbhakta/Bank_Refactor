@@ -1,8 +1,15 @@
-var checking = document.querySelectorAll("#deposit1, withdraw1");
-var retirement = document.querySelectorAll("#deposit2, #withdraw2");
+// Find the button elements and store them in checking and retirement variables.
+var checkingDepositBtn = document.querySelectorAll("#deposit1");
+console.log(checkingDepositBtn);
+var checkingWithdrawBtn = document.querySelectorAll("#withdraw1");
+console.log(checkingWithdrawBtn);
+var retirementDepositBtn = document.querySelectorAll("#deposit2");
+console.log(retirementDepositBtn);
+var retirementWithdrawBtn = document.querySelectorAll("#withdraw2");
+console.log(retirementWithdrawBtn);
+
 
 //Create a function for Checking Account and munipulate balance total from amount deposited
-
   var checkingAcct = function () {
     var balance1 = 0;
     var amount = document.getElementById("amount1").val();
@@ -19,10 +26,9 @@ var retirement = document.querySelectorAll("#deposit2, #withdraw2");
     console.log(amount);
     updateDisplay();
   };
-    checking.addEventListener('click', checkingAcct);
+    checkingDepositBtn.addEventListener('click', checkingAcct);
 
 //Create a function for Retirement Account and munipulate balance total from amount deposited
-
   var retirementAcct = function () {
     var balance2 = 0;
     var amount = document.getElementById("amount2").val();
