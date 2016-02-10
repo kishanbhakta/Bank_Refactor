@@ -17,9 +17,9 @@ var retirement = document.querySelectorAll("#deposit2, #withdraw2");
         balance1 = balance1 - amount;
     }
     console.log(amount);
-    checking.addEventListener('click', checkingAcct);
     updateDisplay();
   };
+    checking.addEventListener('click', checkingAcct);
 
 //Create a function for Retirement Account and munipulate balance total from amount deposited
 
@@ -36,9 +36,9 @@ var retirement = document.querySelectorAll("#deposit2, #withdraw2");
       else(amount <= balance2)
         balance2 = balance2 - amount;
     }
-    retirement.addEventListener('click', retirementAcct);
     updateDisplay();
   };
+    retirement.addEventListener('click', retirementAcct);
 
 
   function updateDisplay (balance) {
